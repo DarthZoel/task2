@@ -1,5 +1,8 @@
 // Function Calculator (nomer 1)
 function calculator(num1, num2, operator){
+    if(typeof num1 !== "number" || typeof num2 !== "number"){
+        return "masukan angka dongs ahhhh"
+    }
     switch (operator) {
         case "+":
           return num1 + num2;
@@ -14,6 +17,7 @@ function calculator(num1, num2, operator){
       }
 }
 
+console.log(calculator(10,"k","/"))
 console.log(calculator(10,2,"/"))
 
 //(nomer 2)
