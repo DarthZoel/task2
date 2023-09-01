@@ -30,12 +30,40 @@ console.log(calculator(10,2,"/"))
 const celsiusToFahrenheit = (celsius) => (celsius * 9/5) + 32;
 console.log(celsiusToFahrenheit(50))
 
-//currying
-function celsiusToFahrenheitCurried(celsius) {
-    return function() {
-      return (celsius * 9/5) + 32;
+//currying untuk kalkulator
+function calculator() {
+    return function operator(operation) {
+      return function (a) {
+        return function (b) {
+          switch (operation) {
+            case 'add':
+              return a + b;
+            case 'subtract':
+              return a - b;
+            case 'multiply':
+              return a * b;
+            case 'divide':
+              return a / b;
+            default:
+              return 'Operasi tidak valid';
+          }
+        };
+      };
     };
   }
-
-  const curry = celsiusToFahrenheitCurried(60)
-  console.log(curry())
+  
+  // penggunaan
+  const calculate = calculator();
+  
+  const add = calculate('add');
+  console.log('Penambahan:', add(5)(3)); 
+  
+  const subtract = calculate('subtract');
+  console.log('Pengurangan:', subtract(8)(2));
+  
+  const multiply = calculate('multiply');
+  console.log('Perkalian:', multiply(4)(6));
+  
+  const divide = calculate('divide');
+  console.log('Pembagian:', divide(10)(2));
+  
